@@ -1,16 +1,23 @@
-name: Exploring Github Enterprise Actions Features/Policies
+name: Exploring Github Enterprise Action Features/Policies
 
 on:
-    workflow_dispatch:
+    workflow_dispatch: 
     push:
 
 jobs:
-    demo_job:
-        runs-on: self-hosted
-        steps:
-          - name: Hello
-            run: |
-              echo "Hello Github Enterprise!!"
+  demo_job:
+    runs-on: self-hosted
+    steps:
+      - name: Hello
+        run: |
+          echo "Hello Github Enterprise!!"
 
-          - name: External Call using cURL
-            run: curl -v http://httpbin.org/ip
+      - name: External Call using cURL
+        run: curl -v http://httpbin.org/ip
+
+      - name: Verify Proxy Settings
+        run: |
+          echo "HTTPS Proxy: $https_proxy"
+          echo "HTTP Proxy: $http_proxy"
+          echo "No Proxy: $no_proxy"
+          curl -v https://httpbin.org/ip
